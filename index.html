@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#020805">
+<meta name="description" content="305 MATRIX — Cyberpunk team hub">
+<title>305 MATRIX | Team Hub</title>
+<style>
+:root{--bg:#020805;--panel:#06140d;--panel2:#081b11;--green:#32ff83;--green2:#00c853;--muted:#8bb69b;--line:#14542f;--red:#ff426b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at top,#092415 0%,#020805 48%,#010302 100%);color:#eafff0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;min-height:100vh;overflow-x:hidden}
+#matrix{position:fixed;inset:0;width:100%;height:100%;opacity:.14;pointer-events:none;z-index:0}
+.app{position:relative;z-index:1;max-width:980px;margin:auto;padding:18px 14px 90px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);background:#031009dd;backdrop-filter:blur(12px);border-radius:18px;padding:12px 14px;box-shadow:0 0 28px #00ff5520}
+.brandmark{font-weight:1000;color:var(--green);letter-spacing:1px;text-shadow:0 0 12px #00ff77;direction:ltr;font-size:clamp(15px,3.5vw,22px)}
+.status{font-size:11px;color:var(--green);border:1px solid #1c7842;border-radius:30px;padding:6px 9px;white-space:nowrap}.pulse{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;margin-left:5px;box-shadow:0 0 10px var(--green);animation:pulse 1.2s infinite}
+@keyframes pulse{50%{opacity:.25;transform:scale(.7)}}
+.hero{text-align:center;padding:38px 8px 26px}.eyebrow{font-size:11px;letter-spacing:4px;color:var(--muted);direction:ltr}.hero h1{font-size:clamp(30px,7vw,62px);margin:12px 0;color:var(--green);direction:ltr;text-shadow:0 0 7px #00ff7b,0 0 28px #00ff6a55;line-height:1.2}.hero p{color:#9ac8a9;margin:0 auto;max-width:540px;line-height:1.8;font-size:14px}.hero-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:20px}
+.btn{border:1px solid #1c9c53;background:#062111;color:var(--green);padding:11px 15px;border-radius:12px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:.2s;font-size:13px}.btn:hover{background:#0b361d;box-shadow:0 0 20px #00ff7733;transform:translateY(-2px)}.btn.primary{background:var(--green);color:#001b09;border-color:var(--green);box-shadow:0 0 20px #00ff7730}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tile{position:relative;overflow:hidden;min-height:126px;border:1px solid #14542f;border-radius:17px;padding:16px;background:linear-gradient(145deg,#081b11ed,#031009f5);text-align:right;cursor:pointer;transition:transform .2s,border-color .2s;display:flex;flex-direction:column;justify-content:space-between}.tile:before{content:"";position:absolute;top:0;right:0;width:65px;height:2px;background:var(--green);box-shadow:0 0 16px var(--green)}.tile:hover{transform:translateY(-3px);border-color:var(--green)}.tile .ico{font-size:26px;filter:drop-shadow(0 0 8px #00ff7766)}.tile strong{font-size:15px;display:block;margin-top:12px}.tile small{color:#83b895;font-size:11px;line-height:1.7}.section{margin-top:24px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.section-head h2{font-size:16px;color:var(--green);margin:0}.section-head span{font-size:10px;color:#6d9b7c;direction:ltr;letter-spacing:1px}
+.linklist{display:grid;gap:9px}.linkrow{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #104326;background:#04110a;border-radius:13px;padding:12px}.linkinfo{min-width:0}.linkinfo strong{display:block;font-size:13px}.linkinfo small{display:block;color:#7eac8c;font-size:11px;overflow-wrap:anywhere;margin-top:4px;direction:ltr;text-align:right}.linkactions{display:flex;gap:6px;flex-shrink:0}.mini{padding:8px 10px;border-radius:9px;font-size:11px}
+.panel{border:1px solid #14542f;background:#04110beF;border-radius:17px;padding:16px}.terminal{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;direction:ltr;text-align:left;color:#72ff9f;line-height:1.8;font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere}.terminal .dim{color:#47865c}
+label{font-size:12px;color:#a3d8b2;display:block;margin:10px 0 6px}input,select,textarea{width:100%;border:1px solid #175632;background:#020a05;color:#eafff0;border-radius:10px;padding:11px;font:inherit;outline:none}input:focus,textarea:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 2px #00ff771c}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.notice{font-size:11px;color:#81ad8d;line-height:1.8}.footer{text-align:center;color:#578267;font-size:11px;margin-top:30px;line-height:1.8}.hidden{display:none!important}
+.bottomnav{position:fixed;z-index:5;bottom:10px;left:50%;transform:translateX(-50%);width:min(94%,520px);display:flex;justify-content:space-around;gap:5px;padding:8px;background:#031009ed;border:1px solid #1a5b34;border-radius:17px;backdrop-filter:blur(16px);box-shadow:0 0 28px #00ff7714}.navbtn{border:0;background:transparent;color:#83b895;font-size:10px;padding:7px 8px;border-radius:10px;cursor:pointer}.navbtn.active{background:#0a321b;color:var(--green);box-shadow:inset 0 0 0 1px #1c6d3b}.navbtn b{display:block;font-size:17px;margin-bottom:3px}
+.toast{position:fixed;z-index:10;top:18px;left:50%;transform:translateX(-50%);background:#0b321c;border:1px solid var(--green);color:var(--green);padding:10px 15px;border-radius:10px;font-size:12px;opacity:0;pointer-events:none;transition:.25s}.toast.show{opacity:1}
+@media(min-width:680px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{padding-top:52px}.tile{min-height:150px}}@media(max-width:420px){.app{padding:10px 10px 90px}.topbar{padding:10px}.status{font-size:9px}.formgrid{grid-template-columns:1fr}.linkrow{align-items:flex-start}.linkactions{flex-direction:column}}
+</style>
+</head>
+<body>
+<canvas id="matrix"></canvas>
+<div class="toast" id="toast"></div>
+<div class="app">
+<header class="topbar">
+  <div class="brandmark">⟦ 305 MATRIX ⟧</div>
+  <div class="status"><i class="pulse"></i> SYSTEM ONLINE</div>
+</header>
+<section class="hero" id="home">
+  <div class="eyebrow">WELCOME TO THE GRID</div>
+  <h1>305『MATRIX』</h1>
+  <p>بوابتك الرقمية — روابط التيم، بوتات تليجرام، المواقع والأدوات في مكان واحد.</p>
+  <div class="hero-actions">
+    <button class="btn primary" onclick="showSection('links')">⌘ استكشف الأقسام</button>
+    <button class="btn" onclick="showSection('settings')">⚙ تخصيص التطبيق</button>
+  </div>
+</section>
+<section class="section" id="links">
+  <div class="section-head"><h2>◈ الأقسام الرئيسية</h2><span>SELECT MODULE</span></div>
+  <div class="grid">
+    <button class="tile" onclick="showSection('tiktok')"><span class="ico">♪</span><span><strong>TikTok</strong><small>حسابات وروابط المتابعة</small></span></button>
+    <button class="tile" onclick="showSection('telegram')"><span class="ico">➤</span><span><strong>Telegram Bots</strong><small>بوتات التيم والقنوات</small></span></button>
+    <button class="tile" onclick="showSection('websites')"><span class="ico">⌘</span><span><strong>Websites</strong><small>مواقع وروابط خارجية</small></span></button>
+    <button class="tile" onclick="showSection('tools')"><span class="ico">⚒</span><span><strong>Tools</strong><small>أدوات ومصادر مفيدة</small></span></button>
+    <button class="tile" onclick="showSection('members')"><span class="ico">♟</span><span><strong>Team Members</strong><small>أعضاء الفريق</small></span></button>
+    <button class="tile" onclick="showSection('about')"><span class="ico">◉</span><span><strong>About Team</strong><small>تعريف بالتيم</small></span></button>
+    <button class="tile" onclick="showSection('contact')"><span class="ico">✉</span><span><strong>Contact Us</strong><small>تواصل مع التيم</small></span></button>
+    <button class="tile" onclick="showSection('settings')"><span class="ico">⚙</span><span><strong>Settings</strong><small>إعدادات وتعديل الروابط</small></span></button>
+  </div>
+</section>
+<section class="section page hidden" id="tiktok"><div class="section-head"><h2>♪ TikTok</h2><span>SOCIAL LINKS</span></div><div class="panel"><p class="notice">حط رابط حسابك من الإعدادات، وبعدها استخدم زر فتح الرابط.</p><div id="tiktokList" class="linklist"></div></div></section>
+<section class="section page hidden" id="telegram"><div class="section-head"><h2>➤ Telegram Bots</h2><span>BOTS & CHANNELS</span></div><div class="panel"><p class="notice">أضف روابط البوتات والقنوات اللي تخصك أو عندك إذن تشاركها.</p><div id="telegramList" class="linklist"></div></div></section>
+<section class="section page hidden" id="websites"><div class="section-head"><h2>⌘ Websites</h2><span>WEB DIRECTORY</span></div><div class="panel"><div id="websitesList" class="linklist"></div></div></section>
+<section class="section page hidden" id="tools"><div class="section-head"><h2>⚒ Tools</h2><span>USEFUL TOOLS</span></div><div class="panel"><div id="toolsList" class="linklist"></div><p class="notice">أضف أدواتك وروابطها من الإعدادات. استخدم الأدوات بشكل قانوني وبإذن أصحاب الأنظمة.</p></div></section>
+<section class="section page hidden" id="members"><div class="section-head"><h2>♟ Team Members</h2><span>THE CREW</span></div><div class="panel"><p>⟦ <b id="memberTeam">305『MATRIX』</b> ⟧</p><p class="notice">ضيف أسماء الأعضاء أو روابط حساباتهم من إعدادات الروابط، أو عدّل وصف التيم في الإعدادات.</p><div id="membersList" class="linklist"></div></div></section>
+<section class="section page hidden" id="about"><div class="section-head"><h2>◉ About Team</h2><span>WHO WE ARE</span></div><div class="panel"><div class="terminal">> INITIALIZING TEAM PROFILE...<br>> NAME: <span id="aboutTeam">305 MATRIX</span><br>> STYLE: CYBERPUNK / MATRIX GREEN<br>> PURPOSE: COMMUNITY • TOOLS • DIGITAL PROJECTS<br><br><span class="dim">ضع هنا تعريف التيم وروابطه الرسمية من شاشة الإعدادات.</span></div><p id="aboutText" class="notice">تيم مهتم بالتقنية والمشاريع الرقمية والتعلّم المسؤول.</p></div></section>
+<section class="section page hidden" id="contact"><div class="section-head"><h2>✉ Contact Us</h2><span>GET IN TOUCH</span></div><div class="panel"><p class="notice">روابط التواصل بتظهر هنا بعد إضافتها من الإعدادات.</p><div id="contactList" class="linklist"></div></div></section>
+<section class="section page hidden" id="settings"><div class="section-head"><h2>⚙ Settings / Link Manager</h2><span>LOCAL CUSTOMIZATION</span></div>
+<div class="panel">
+  <p class="notice">التغييرات بتتحفظ على نفس المتصفح/الجهاز فقط. لو فتحت الموقع على جهاز تاني، هتحتاج تدخل الروابط من جديد. ما تدخلش كلمات مرور أو مفاتيح API سرية هنا.</p>
+  <div class="formgrid">
+    <div><label for="teamName">اسم التيم</label><input id="teamName" value="305『MATRIX』" maxlength="50"></div>
+    <div><label for="aboutInput">وصف التيم</label><input id="aboutInput" value="تيم مهتم بالتقنية والمشاريع الرقمية والتعلّم المسؤول." maxlength="180"></div>
+  </div>
+  <hr style="border:0;border-top:1px solid #14542f;margin:18px 0">
+  <h3 style="font-size:14px;color:var(--green)">إضافة أو تعديل رابط</h3>
+  <label for="category">القسم</label><select id="category"><option value="tiktok">TikTok</option><option value="telegram">Telegram Bots</option><option value="websites">Websites</option><option value="tools">Tools</option><option value="members">Team Members</option><option value="contact">Contact Us</option></select>
+  <label for="linkTitle">اسم الرابط</label><input id="linkTitle" placeholder="مثال: حساب التيم الرسمي">
+  <label for="linkUrl">الرابط الكامل</label><input id="linkUrl" type="url" placeholder="https://... أو https://t.me/..." dir="ltr">
+  <div class="hero-actions" style="justify-content:flex-start"><button class="btn primary" onclick="saveLink()">＋ حفظ الرابط</button><button class="btn" onclick="saveProfile()">حفظ بيانات التيم</button><button class="btn" onclick="resetDemo()">استعادة الروابط التجريبية</button></div>
+  <p class="notice">ملاحظة: الروابط اللي بتضيفها بتُفتح خارج التطبيق. ما فيش إرسال بيانات للخلفية أو تتبع للمستخدمين في النسخة دي.</p>
+  <div class="section-head" style="margin-top:20px"><h2>الروابط المحفوظة</h2></div><div id="manageList" class="linklist"></div>
+</div></section>
+<footer class="footer">305 MATRIX • CYBERPUNK TEAM HUB<br>واجهة تجريبية مستقلة — خصّص الروابط بنفسك</footer>
+</div>
+<nav class="bottomnav">
+<button class="navbtn active" onclick="showSection('home',this)"><b>⌂</b>الرئيسية</button>
+<button class="navbtn" onclick="showSection('links',this)"><b>▦</b>الأقسام</button>
+<button class="navbtn" onclick="showSection('telegram',this)"><b>➤</b>تليجرام</button>
+<button class="navbtn" onclick="showSection('tiktok',this)"><b>♪</b>تيك توك</button>
+<button class="navbtn" onclick="showSection('settings',this)"><b>⚙</b>الإعدادات</button>
+</nav>
+<script>
+const defaults=[
+{id:1,cat:'tiktok',title:'TikTok — أضف رابطك',url:'https://www.tiktok.com/'},
+{id:2,cat:'telegram',title:'Telegram — أضف بوتك',url:'https://telegram.org/'},
+{id:3,cat:'websites',title:'موقعك الرسمي',url:'https://example.com/'},
+{id:4,cat:'tools',title:'أداة مفيدة',url:'https://developer.mozilla.org/'}
+];
+let items=JSON.parse(localStorage.getItem('m305_links')||'null')||defaults;
+let profile=JSON.parse(localStorage.getItem('m305_profile')||'null')||{name:'305『MATRIX』',about:'تيم مهتم بالتقنية والمشاريع الرقمية والتعلّم المسؤول.'};
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function save(){localStorage.setItem('m305_links',JSON.stringify(items));render();}
+function toast(msg){let t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2100)}
+function renderList(id,cat){let el=document.getElementById(id);if(!el)return;let list=items.filter(x=>x.cat===cat);el.innerHTML=list.length?list.map(x=>`<div class="linkrow"><div class="linkinfo"><strong>${esc(x.title)}</strong><small>${esc(x.url)}</small></div><div class="linkactions"><button class="btn mini" onclick="openLink(${x.id})">فتح ↗</button></div></div>`).join(''):'<p class="notice">مفيش روابط هنا لسه. أضف رابط من الإعدادات.</p>'}
+function renderManage(){let el=document.getElementById('manageList');el.innerHTML=items.map(x=>`<div class="linkrow"><div class="linkinfo"><strong>${esc(x.title)}</strong><small>${esc(x.cat)} · ${esc(x.url)}</small></div><div class="linkactions"><button class="btn mini" onclick="editLink(${x.id})">تعديل</button><button class="btn mini" onclick="deleteLink(${x.id})">حذف</button></div></div>`).join('')||'<p class="notice">لا توجد روابط محفوظة.</p>'}
+function render(){renderList('tiktokList','tiktok');renderList('telegramList','telegram');renderList('websitesList','websites');renderList('toolsList','tools');renderList('membersList','members');renderList('contactList','contact');renderManage();document.getElementById('memberTeam').textContent=profile.name;document.getElementById('aboutTeam').textContent=profile.name;document.getElementById('aboutText').textContent=profile.about;document.querySelector('.brandmark').textContent='⟦ '+profile.name+' ⟧';document.querySelector('.hero h1').textContent=profile.name;document.title=profile.name+' | Team Hub';document.getElementById('teamName').value=profile.name;document.getElementById('aboutInput').value=profile.about}
+function saveLink(){let cat=document.getElementById('category').value,title=document.getElementById('linkTitle').value.trim(),url=document.getElementById('linkUrl').value.trim();if(!title||!url){toast('اكتب اسم الرابط والرابط الأول');return}try{let u=new URL(url);if(!['http:','https:'].includes(u.protocol))throw 0}catch(e){toast('اكتب رابط صحيح يبدأ بـ https://');return}items.push({id:Date.now(),cat,title,url});save();document.getElementById('linkTitle').value='';document.getElementById('linkUrl').value='';toast('تم حفظ الرابط على جهازك')}
+function openLink(id){let x=items.find(i=>i.id===id);if(x)window.open(x.url,'_blank','noopener,noreferrer')}
+function deleteLink(id){items=items.filter(x=>x.id!==id);save();toast('تم حذف الرابط')}
+function editLink(id){let x=items.find(i=>i.id===id);if(!x)return;document.getElementById('category').value=x.cat;document.getElementById('linkTitle').value=x.title;document.getElementById('linkUrl').value=x.url;items=items.filter(i=>i.id!==id);save();window.scrollTo({top:document.getElementById('settings').offsetTop,behavior:'smooth'});toast('عدّل البيانات واضغط حفظ الرابط')}
+function saveProfile(){let name=document.getElementById('teamName').value.trim(),about=document.getElementById('aboutInput').value.trim();if(!name){toast('اكتب اسم التيم');return}profile={name,about};localStorage.setItem('m305_profile',JSON.stringify(profile));render();toast('تم حفظ بيانات التيم')}
+function resetDemo(){if(confirm('ترجع الروابط التجريبية؟')){items=defaults.map(x=>({...x}));save();toast('تمت استعادة الروابط التجريبية')}}
+function showSection(id,btn){document.querySelectorAll('.page').forEach(e=>e.classList.add('hidden'));if(id!=='home'&&id!=='links'){let el=document.getElementById(id);if(el)el.classList.remove('hidden')}if(id==='links'){document.getElementById('links').scrollIntoView({behavior:'smooth',block:'start'})}else if(id==='home'){document.getElementById('home').scrollIntoView({behavior:'smooth',block:'start'})}else{document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'})}document.querySelectorAll('.navbtn').forEach(e=>e.classList.remove('active'));if(btn)btn.classList.add('active');else{let map={home:0,links:1,telegram:2,tiktok:3,settings:4};document.querySelectorAll('.navbtn')[map[id]??0]?.classList.add('active')}}
+render();
+const canvas=document.getElementById('matrix'),ctx=canvas.getContext('2d');let cols=[],fontSize=14;
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;let n=Math.ceil(canvas.width/fontSize);cols=Array(n).fill(1)}
+window.addEventListener('resize',resize);resize();
+setInterval(()=>{ctx.fillStyle='rgba(2,8,5,0.09)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#32ff83';ctx.font=fontSize+'px monospace';for(let i=0;i<cols.length;i++){let ch=String.fromCharCode(0x30A0+Math.random()*96);ctx.fillText(ch,i*fontSize,cols[i]*fontSize);if(cols[i]*fontSize>canvas.height&&Math.random()>.975)cols[i]=0;cols[i]++}},55);
+</script>
+</body>
+</html>
